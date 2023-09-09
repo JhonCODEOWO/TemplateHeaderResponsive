@@ -1,0 +1,206 @@
+:root{
+    --colorHeader: black;
+    --hoverHeaderItem: lime;
+
+    --fuente: 'Nunito Sans', sans-serif;
+}
+
+/* Ajustes generales */
+html{
+    font-size: 62.5%;
+    /* La siguiente linea evita el uso del modelo caja */
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body{
+    position: relative;
+    font-family: var(--fuente);
+}
+
+/* ------------------ */
+
+/* Globales */
+@keyframes desvanecer {
+    0%{
+        opacity: 0;
+    }100%{
+        opacity: 1;
+    }
+}
+
+@keyframes moverDesdeIzquierda {
+    0% {
+      transform: translateX(-100%); /* Mueve el elemento hacia la izquierda fuera de la pantalla */
+    }
+    100% {
+      transform: translateX(0); /* Devuelve el elemento a su posición original */
+    }
+}
+
+@keyframes moverDesdeArriba {
+    0% {
+      transform: translateY(-100%); /* Mueve el elemento hacia arriba fuera de la pantalla */
+    }
+    100% {
+      transform: translateY(0); /* Devuelve el elemento a su posición original */
+    }
+  }
+
+
+ul{
+    padding: 0;
+}
+
+li{
+    list-style: none;
+    margin: 0;
+}
+
+a{
+    color: white;
+    text-decoration: none;
+}
+
+button{
+    border: none;
+}
+
+button:hover{
+    cursor: pointer;
+}
+
+/* Utilidades */
+
+
+/* Header */
+.header{
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--colorHeader);
+}
+
+.header__logo{
+    font-size: 2rem;
+    color: white;
+    flex: 1;
+}
+
+.header__nav{
+    display: none;
+}
+
+@media (min-width: 768px){
+    .header__nav{
+        display: flex;
+        align-items: center;
+        flex: 2;
+        /* flex-direction: column; */
+    }
+}
+
+.header__nav ul{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.header__nav ul li{
+    margin-left: 1.5rem;
+}
+
+.header__nav ul li a{
+    font-size: 2rem;
+}
+
+.header__nav ul li a:hover{
+    color: var(--hoverHeaderItem);
+}
+
+.header__nav ul li:hover .submenu{
+    display: block;
+}
+
+.submenu{
+    display: none;
+    position: absolute;
+    z-index: 1;
+}
+
+.submenu ul{
+    display: flex;
+    flex-direction: column;
+    color: white;
+    background-color: black;
+    animation: desvanecer .2s ease;
+}
+
+.submenu ul li{
+    padding: 0 1rem 0 1rem;
+    margin: 0;
+    animation: moverDesdeIzquierda .2s ease;
+}
+
+.header__nav--movile{
+    display: block;
+    display: flex;
+    align-items: center;
+}
+
+@media (min-width: 768px){
+    .header__nav--movile{
+        display: none;
+    }
+}
+
+.header__nav--movile__btn{
+    background-color: transparent;
+}
+
+.header__nav--movile__items{
+    display: none;
+    position: absolute;
+    background-color: black;
+    height: 100vh;
+    width: 50%;
+    right: 0;
+    animation: desvanecer .2s ease;
+}
+
+@media (min-width: 768px){
+    .header__nav--movile__items{
+        display: none;
+    }
+}
+
+.header__nav--movile__items ul li, .header__nav--movile__items ul li a{
+    color: white;
+    font-size: 2.3rem;
+    text-align: center;
+    animation: moverDesdeArriba .2s ease;
+}
+
+.header__nav--movile__items ul li:hover, .header__nav--movile__items ul li a:hover{
+    cursor: pointer;
+    color: var(--hoverHeaderItem);
+}
+
+.header__nav--movile__subitem{
+    display: none;
+}
+
+.showMenuMovile{
+    display: block;
+}
+
+.hideMenuMovile{
+    display: none;
+}
+
+.showingMenuMovile{
+    overflow: hidden;
+}
